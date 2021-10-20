@@ -14,7 +14,7 @@ public class MediaAritmetica {
         double media = 0;
         double soma = 0;
         for (int i = 0; i < qtdNumeros; i++) {
-            System.out.print("Digite o " + (i+1) + "ª número: ");
+            System.out.print("Digite o " + (i+1) + "º número: ");
             soma += numeros[i] = Double.parseDouble(sc.nextLine());
         }
 
