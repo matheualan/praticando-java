@@ -12,13 +12,15 @@ public class BuscaAlunosNoCurso {
         Aluno aluno2 = new Aluno("Guilherme Silveira", 23981);
         Aluno aluno3 = new Aluno("Mauricio Aniche", 19382);
 
-        curso.matricula(aluno1);
-        curso.matricula(aluno2);
-        curso.matricula(aluno3);
+        curso.matricular(aluno1);
+        curso.matricular(aluno2);
+        curso.matricular(aluno3);
 
         System.out.println("Aluno com matrícula 34762?");
-        Aluno aluno = curso.buscaMatriculado(34762);
+        Aluno aluno = curso.findByMatricula(34762);
         System.out.println("Aluno: " + aluno);
+
+        System.out.println("O aluno(a) " + aluno2 + " está matriculado(a)? " + curso.isMatriculado(aluno2));
 
     }
 }
