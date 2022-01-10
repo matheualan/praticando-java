@@ -12,7 +12,7 @@ public class AlunosSet {
         alunos.add("Loiane Growner");
         alunos.add("Nélio Alves");
         alunos.add("Gustavo Guanabara");
-        alunos.add("Gustavo Guanabara");
+        alunos.add("Gustavo Guanabara"); //Set nao permite dados duplicados
 
         System.out.println(alunos.size());
         alunos.remove("Gustavo Guanabara");
