@@ -1,5 +1,10 @@
 package packs.formatacaoNumeros;
 
+/**
+ * @author Matheus Alan
+ * @version 1.0
+ */
+
 import java.text.NumberFormat;
 import java.util.Locale;
 
