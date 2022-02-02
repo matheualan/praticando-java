@@ -32,6 +32,7 @@ public class ProductController {
     public ResponseEntity<Product> attProduct(@RequestBody Product product, @PathVariable Long id) {
         return productRepository.findById(id)
                 .map(prod -> ResponseEntity.status(HttpStatus.OK).body(prod))
+                .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).body(product));
     }
 
 }

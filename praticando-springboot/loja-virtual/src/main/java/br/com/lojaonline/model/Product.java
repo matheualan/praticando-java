@@ -1,7 +1,9 @@
 package br.com.lojaonline.model;
 
 import javax.persistence.*;
+import javax.xml.crypto.Data;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_product")
@@ -10,10 +12,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private BigDecimal price;
+    private Date date;
 
     public Long getId() {
         return id;
