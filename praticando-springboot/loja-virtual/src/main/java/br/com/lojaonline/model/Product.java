@@ -1,7 +1,8 @@
 package br.com.lojaonline.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
-import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -14,29 +15,23 @@ public class Product {
     private Long id;
     private String name;
     private BigDecimal price;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date date;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public Date getDate() {
+        return date;
     }
+
 }
