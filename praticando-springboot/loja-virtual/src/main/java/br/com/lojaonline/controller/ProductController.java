@@ -37,11 +37,16 @@ public class ProductController {
     }
 
     @PutMapping("/updateById/{id}")
-    public ResponseEntity<Product> updateProductById(@RequestBody Product product, @PathVariable Long id) {
+    public ResponseEntity<Product> updateProductById(@PathVariable Long id, @RequestBody Product newProduct) {
         log.info(dateUtil.dataFormatada(LocalDateTime.now()).concat(" /updateById/{id}"));
         return productRepository.findById(id)
-                .map(prod -> ResponseEntity.status(HttpStatus.OK).body(prod))
-                .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).body(product));
+                .map(productChanged -> {
+                    productChanged.setName(newProduct.getName());
+                    productChanged.setPrice(newProduct.getPrice());
+                    productChanged.setDate(newProduct.getDate());
+                    Product productUpdated = productRepository.save(productChanged);
+                    return ResponseEntity.ok().body(productUpdated);
+                }).orElse(ResponseEntity.notFound().build());
     }
 
 }
