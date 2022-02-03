@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -27,6 +29,7 @@ public class ProductController {
         log.info(dateUtil.dataFormatada(LocalDateTime.now()).concat(" /insertProduct"));
         Product updateProduct = productRepository.save(product);
         return ResponseEntity.status(HttpStatus.OK).body(updateProduct);
+//        return new ResponseEntity<Product>(HttpStatus.OK);
     }
 
     @GetMapping("/allProducts")
@@ -34,6 +37,19 @@ public class ProductController {
         log.info(dateUtil.dataFormatada(LocalDateTime.now()).concat(" /allProducts"));
         List<Product> findAll = productRepository.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(findAll);
+//        return new ResponseEntity<List<Product>>(HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/findById/{id}")
+    public ResponseEntity<Optional<Product>> findById(@PathVariable Long id) {
+        log.info(dateUtil.dataFormatada(LocalDateTime.now()).concat(" /findById"));
+        try {
+            Optional<Product> findId = productRepository.findById(id);
+            return ResponseEntity.ok().body(findId);
+//            return new ResponseEntity<Optional<Product>>(HttpStatus.OK);
+        } catch (NoSuchElementException nsee) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/updateById/{id}")
@@ -47,6 +63,17 @@ public class ProductController {
                     Product productUpdated = productRepository.save(productChanged);
                     return ResponseEntity.ok().body(productUpdated);
                 }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping(path = "/deleteById/{id}")
+    public ResponseEntity<Optional<Product>> deleteById(@PathVariable Long id) {
+        log.info(dateUtil.dataFormatada(LocalDateTime.now()).concat(" /deleteById"));
+        try {
+            productRepository.deleteById(id);
+            return new ResponseEntity<Optional<Product>>(HttpStatus.OK);
+        } catch (NoSuchElementException nsee) {
+            return new ResponseEntity<Optional<Product>>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }
