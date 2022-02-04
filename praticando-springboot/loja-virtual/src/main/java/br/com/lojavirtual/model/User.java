@@ -22,7 +22,6 @@ public class User implements Serializable {
     private Date entryDate;
     @Temporal(TemporalType.DATE)
     private Date exitDate;
-    private String cargo;
     private String cidade;
     private String logradouro;
     private String numero;
@@ -57,13 +56,6 @@ public class User implements Serializable {
     }
     public void setExitDate(Date exitDate) {
         this.exitDate = exitDate;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
     }
 
     public String getCidade() {
