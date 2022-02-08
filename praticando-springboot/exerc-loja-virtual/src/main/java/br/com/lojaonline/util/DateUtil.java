@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class DateUtil {
 
-    public String dataFormatada(LocalDateTime localDateFormat) {
+    public String dateFormatted(LocalDateTime localDateFormat) {
         return DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(localDateFormat);
     }
 

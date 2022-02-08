@@ -6,9 +6,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "tb_users")
-public class User implements Serializable {
+public class Funcionario implements Serializable {
 
-    public User() {
+    public Funcionario() {
         super();
     }
 
