@@ -76,7 +76,7 @@ public class ParkingSpotController {
         if(!parkingSpotModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not found.");
         }
-//        1 - Modo de fazer
+//        1 - Modo de fazer conversao dos dados de um objeto para outro
 //        var parkingSpotModel = parkingSpotModelOptional.get();
 //        parkingSpotModel.setParkingSpotNumber(parkingSpotDTO.getParkingSpotNumber());
 //        parkingSpotModel.setLicensePlateCar(parkingSpotDTO.getLicensePlateCar());
@@ -87,12 +87,11 @@ public class ParkingSpotController {
 //        parkingSpotModel.setApartment(parkingSpotDTO.getApartment());
 //        parkingSpotModel.setBlock(parkingSpotDTO.getBlock());
 
-//        2 - Modo de fazer
+//        2 - Modo de fazer conversao dos dados de um objeto para outro
         var parkingSpotModel = new ParkingSpotModel();
         BeanUtils.copyProperties(parkingSpotDTO, parkingSpotModel);
         parkingSpotModel.setId(parkingSpotModelOptional.get().getId());
         parkingSpotModel.setRegistrationDate(parkingSpotModelOptional.get().getRegistrationDate());
-
         return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.save(parkingSpotModel));
     }
 
