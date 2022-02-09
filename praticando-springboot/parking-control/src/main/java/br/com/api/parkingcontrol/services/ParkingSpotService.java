@@ -18,7 +18,7 @@ public class ParkingSpotService {
         this.parkingSpotRepository = parkingSpotRepository;
     }
 
-    @Transactional
+    @Transactional //Caso algo dê errado pode-se fazer o rollback sendo útil em casos dos metodos Post, Delete, Put
     public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {
         return parkingSpotRepository.save(parkingSpotModel);
     }
@@ -42,4 +42,10 @@ public class ParkingSpotService {
     public Optional<ParkingSpotModel> findById(UUID id) {
         return parkingSpotRepository.findById(id);
     }
+
+    @Transactional
+    public void delete(ParkingSpotModel parkingSpotModel) {
+        parkingSpotRepository.delete(parkingSpotModel);
+    }
+
 }
