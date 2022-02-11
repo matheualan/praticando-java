@@ -13,7 +13,7 @@ public class ParkingControlApplication {
 		SpringApplication.run(ParkingControlApplication.class, args);
 	}
 
-//	Despached Servlet é a ferramenta/dispositivo que recebe a requisição e faz o roteamento
+//	Despached/Dispatcher Servlet é a ferramenta/dispositivo que recebe a requisição e faz o roteamento
 //	por "de baixo dos panos" para definir qual controller  vai receber e responder a requisição
 	@GetMapping("/")
 	public String index() {
