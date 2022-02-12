@@ -3,15 +3,19 @@ package br.com.lojaonline.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_users")
-public class User {
+public class UserModel implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String name;
     private String cpf;
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -19,7 +23,7 @@ public class User {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date entryDate;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 

@@ -1,13 +1,14 @@
 package br.com.lojaonline.repository;
 
-import br.com.lojaonline.model.Item;
+import br.com.lojaonline.model.ItemModel;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface ItemServiceInterface {
 
-    public Item createProduct(Item item);
-    public List<Item> getProduct();
-    public void deleteProduct(Long id);
+    public ItemModel createProduct(ItemModel itemModel);
+    public List<ItemModel> getAllProducts();
+    public void deleteProduct(UUID id);
 
 }
