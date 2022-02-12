@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/item")
 //@Log4j2
 public class ItemController {
@@ -43,7 +43,7 @@ public class ItemController {
     }
 
     @PostMapping("/criarProduto")
-    public ResponseEntity<ItemModel> criandoProduto(@RequestBody ItemDTO itemDTO) {
+    public ResponseEntity<Object> criandoProduto(@RequestBody ItemDTO itemDTO) {
         var itemModel = new ItemModel();
         BeanUtils.copyProperties(itemDTO, itemModel);
         itemModel.setRegistrationDate(LocalDateTime.now());
