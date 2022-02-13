@@ -7,9 +7,9 @@ import java.util.UUID;
 
 public interface ItemServiceInterface {
 
-    public ItemModel createProduct(ItemModel itemModel);
-    public List<ItemModel> getAllProducts();
-    public void getById(UUID id);
-    public void deleteProduct(UUID id);
+    ItemModel createProduct(ItemModel itemModel);
+    List<ItemModel> getAllProducts();
+    void getById(UUID id);
+    void deleteProduct(UUID id);
 
 }

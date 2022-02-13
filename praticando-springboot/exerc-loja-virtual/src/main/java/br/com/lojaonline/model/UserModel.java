@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,7 +22,7 @@ public class UserModel implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date birthDate;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private Date entryDate;
+    private LocalDateTime entryDate;
 
     public UUID getId() {
         return id;
@@ -51,11 +52,11 @@ public class UserModel implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public Date getEntryDate() {
+    public LocalDateTime getEntryDate() {
         return entryDate;
     }
 
-    public void setEntryDate(Date entryDate) {
+    public void setEntryDate(LocalDateTime entryDate) {
         this.entryDate = entryDate;
     }
 }
