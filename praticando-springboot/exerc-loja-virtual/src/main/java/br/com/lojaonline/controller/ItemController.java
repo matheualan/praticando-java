@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -39,15 +38,29 @@ public class ItemController {
 
     @GetMapping(path = "/listeTudo")
     public ResponseEntity<List<ItemModel>> listeTudo() {
+        logger.info(dateUtil.dateFormatted(LocalDateTime.now()).concat(" /GET LISTE TUDO"));
         return ResponseEntity.status(HttpStatus.OK).body(itemService.getAllProducts());
     }
 
     @PostMapping("/criarProduto")
     public ResponseEntity<Object> criandoProduto(@RequestBody ItemDTO itemDTO) {
+        logger.info(dateUtil.dateFormatted(LocalDateTime.now()).concat(" /POST CRIAR PRODUTO"));
         var itemModel = new ItemModel();
         BeanUtils.copyProperties(itemDTO, itemModel);
         itemModel.setRegistrationDate(LocalDateTime.now());
         return ResponseEntity.status(HttpStatus.CREATED).body(itemService.createProduct(itemModel));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ItemModel> atualizarProduto(@PathVariable(value = "id") UUID id,
+                                                      @RequestBody ItemDTO itemDTO) {
+        logger.info(dateUtil.dateFormatted(LocalDateTime.now()).concat(" /PUT ATUALIZAR PRODUTO"));
+        return itemRepository.findById(id)
+                .map(itemModel -> {
+                    BeanUtils.copyProperties(itemDTO, itemModel);
+                    ItemModel itemAtt = itemRepository.save(itemModel);
+                    return ResponseEntity.ok().body(itemAtt);
+                }).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/insertItem")

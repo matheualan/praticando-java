@@ -9,6 +9,7 @@ public interface ItemServiceInterface {
 
     public ItemModel createProduct(ItemModel itemModel);
     public List<ItemModel> getAllProducts();
+    public void getById(UUID id);
     public void deleteProduct(UUID id);
 
 }

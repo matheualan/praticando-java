@@ -25,6 +25,11 @@ public class ItemService implements ItemServiceInterface {
     }
 
     @Override
+    public void getById(UUID id) {
+        itemRepository.findById(id);
+    }
+
+    @Override
     public List<ItemModel> getAllProducts() {
         return itemRepository.findAll();
     }
