@@ -5,7 +5,6 @@ import br.com.lojaonline.model.UserModel;
 import br.com.lojaonline.repository.UserRepository;
 import br.com.lojaonline.service.UserService;
 import br.com.lojaonline.util.DateUtil;
-import org.apache.catalina.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeanUtils;
@@ -41,7 +40,7 @@ public class UserController {
         var userModel = new UserModel();
         BeanUtils.copyProperties(userDTO, userModel);
         userModel.setEntryDate(LocalDateTime.now());
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.insertUser(userModel));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(userModel));
     }
 
     @GetMapping("/{id}")
@@ -53,6 +52,13 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<Object> update(@PathVariable(value = "id") UUID id, @RequestBody UserDTO userDTO) {
+        logger.info(dateUtil.dateFormatted(LocalDateTime.now()).concat(" /PUT update"));
+        return userService.getUserById(id);
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<UserModel> updateUser(@PathVariable UUID id, @RequestBody UserModel updateUserModel) {

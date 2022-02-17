@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class UserDTO {
 
-
     @NotBlank(message = "O campo name não pode ser nulo ou vazio.")
     private String name;
     @NotBlank(message = "O campo CPF não pode ser nulo ou vazio")

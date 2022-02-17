@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface UserServiceInterface {
 
-    UserModel insertUser(UserModel userModel);
+    UserModel save(UserModel userModel);
     List<UserModel> listAllUsers();
     void getUserById(UUID id);
     void deleteUserById(UUID id);

@@ -6,7 +6,6 @@ import br.com.lojaonline.repository.UserServiceInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -19,7 +18,7 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public UserModel insertUser(UserModel userModel) {
+    public UserModel save(UserModel userModel) {
         return userRepository.save(userModel);
     }
 
