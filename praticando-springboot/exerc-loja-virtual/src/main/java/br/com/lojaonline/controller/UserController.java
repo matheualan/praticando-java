@@ -56,7 +56,11 @@ public class UserController {
     @PutMapping("/update")
     public ResponseEntity<Object> update(@PathVariable(value = "id") UUID id, @RequestBody UserDTO userDTO) {
         logger.info(dateUtil.dateFormatted(LocalDateTime.now()).concat(" /PUT update"));
-        return userService.getUserById(id);
+        Optional<UserModel> userModelOptional = userService.getUserById(id);
+        var userModel = new UserModel();
+        BeanUtils.copyProperties(userDTO, userModel);
+        userModel.setEntryDate(userModelOptional.get().getEntryDate());
+        return ResponseEntity.status(HttpStatus.OK).body(userService.save(userModel));
     }
 
 
